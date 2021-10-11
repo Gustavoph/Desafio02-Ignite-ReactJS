@@ -24,7 +24,6 @@ export function App() {
   useEffect(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
       setGenres(response.data);
-      console.log('Mounted: ', response.data);
     });
 
   }, []);
@@ -32,15 +31,12 @@ export function App() {
   useEffect(() => {
     api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
       setMovies(response.data);
-      console.log('Primeiro: ', response.data);
     });
 
-    console.log('');
     
 
     api.get<GenreResponseProps>(`genres/${selectedGenreId}`).then(response => {
       setSelectedGenre(response.data);
-      console.log('Segundo: ', response.data);
     })
 
   }, [selectedGenreId]);
